@@ -9,8 +9,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  message: "",
-  
+  message: " ",
 };
 
 //Register user
@@ -18,10 +17,8 @@ export const register = createAsyncThunk(
   "auth/register",
   async (user, thunkAPI) => {
     try {
-      console.log("slice");
       return await authService.register(user);
     } catch (error) {
-      console.log("abcccc");
       const message =
         (error.response &&
           error.response.data &&
@@ -61,7 +58,7 @@ export const updateProfile = createAsyncThunk(
       const token = thunkAPI.getState().auth.user.token;
 
       const response = await authService.updateProfile(userData, token);
-      console.log("blah",response);
+      console.log("blah", response);
       return { ...response, token };
     } catch (error) {
       console.log(error);
